@@ -1,9 +1,10 @@
-import {AsyncPipe, NgForOf} from '@angular/common';
-import {Component} from '@angular/core';
-import {changeDetection} from '@demo/emulate/change-detection';
-import {encapsulation} from '@demo/emulate/encapsulation';
-import {TuiTable} from '@taiga-ui/addon-table';
-import {TuiFormatNumberPipe} from '@taiga-ui/core';
+import { AsyncPipe, NgForOf } from '@angular/common';
+import { Component } from '@angular/core';
+import { changeDetection } from '@demo/emulate/change-detection';
+import { encapsulation } from '@demo/emulate/encapsulation';
+import { TuiTable } from '@taiga-ui/addon-table';
+import { TuiFormatNumberPipe } from '@taiga-ui/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
     standalone: true,
@@ -24,6 +25,9 @@ export default class Example {
             balance: 423242,
         },
     ] as const;
+
+    protected readonly direction$ = new BehaviorSubject<-1 | 1>(-1);
+    protected readonly sorter$ = new BehaviorSubject<string | number | symbol>('name');
 
     protected readonly columns = Object.keys(this.data[0]);
 }
